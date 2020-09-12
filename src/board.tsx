@@ -4,13 +4,14 @@ class Board {
 
     rows: number;
     cols: number;
-    initState: Array<Array<number>>;
+    state: Array<Array<number>>;
 
     constructor( rows: number, cols: number ) {
 
         this.rows = rows;
         this.cols = cols;
-        this.initState = this.init();
+        this.state = [];
+        this.init();
     }
 
     init(): Array<Array<number>> {
@@ -21,17 +22,24 @@ class Board {
             state.push( Array(this.cols).fill(0) );
         }
 
+        this.state = state;
+
         return state;
     }
 
-    addLiveCell( cell: Cell ): void {
+    makeCellAlive( x: number, y: number, alive: number = 1 ): Array<Array<number>> {
 
-        this.initState[cell.x][cell.y] = 1;
+        const newState = JSON.parse( JSON.stringify(this.state) );
+
+        newState[x][y] = alive;
+        this.state = newState;
+
+        return newState;
     }
 
     breed( state: Array<Array<number>> ): Array<Array<number>> {
 
-        const newState = this.init();
+        const newState = JSON.parse( JSON.stringify(this.state) );
 
         for ( let x = 0; x < this.rows; ++x ) {
             for ( let y = 0; y < this.cols; ++y ) {
@@ -64,6 +72,8 @@ class Board {
                 }
             }
         }
+
+        this.state = newState;
         
         return newState;
     }

@@ -1,23 +1,17 @@
 import { Board } from './board';
-import { Cell } from './cell';
 
 it( 'has correct state after breed', () => {
 
     const b = new Board( 5, 10 );
 
-    const c1 = new Cell( 1, 2 );
-    const c2 = new Cell( 3, 3 );
-    const c3 = new Cell( 1, 3 );
-    const c4 = new Cell( 1, 4 );
+    b.makeCellAlive( 1, 2 );
+    b.makeCellAlive( 3, 3 );
+    b.makeCellAlive( 1, 3 );
+    b.makeCellAlive( 1, 4 );
 
-    b.addLiveCell( c1 );
-    b.addLiveCell( c2 );
-    b.addLiveCell( c3 );
-    b.addLiveCell( c4 );
+    console.log( b.state );
 
-    console.log( b.initState );
-
-    const s1 = b.breed( b.initState );
+    const s1 = b.breed( b.state );
 
     console.log( s1 );
 

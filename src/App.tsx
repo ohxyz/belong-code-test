@@ -8,7 +8,7 @@ type AppProps = {
 
 function App( {board}: AppProps ) {
 
-    const [ layout, setLayout ] = useState( board.initState );
+    const [ layout, setLayout ] = useState( board.state );
 
     const rowStyle = {
 
@@ -22,7 +22,14 @@ function App( {board}: AppProps ) {
 
     function handleResetClick() {
 
-        setLayout( board.initState );
+        setLayout( board.init() );
+    }
+
+    function handleCellClick( rowIndex: number, cellIndex: number ) {
+
+        const aliveOrDead = board.state[rowIndex][cellIndex] ^ 1;
+
+        setLayout( board.makeCellAlive( rowIndex, cellIndex, aliveOrDead ) );
     }
 
     return  <div className="app">
@@ -42,7 +49,11 @@ function App( {board}: AppProps ) {
                                 };
 
                                 cellStyle.backgroundColor = cell ? '#0000ff80' : '#0000ff10';
-                                return <div key={`${rowIndex},${cellIndex}`} style={ cellStyle } ></div>
+                                return  <div key={`${rowIndex},${cellIndex}`} 
+                                             style={ cellStyle }
+                                             onClick={ () => handleCellClick(rowIndex, cellIndex) }
+                                        >
+                                        </div>
                             } )
                         }
                         </div>
