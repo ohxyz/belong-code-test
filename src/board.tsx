@@ -37,7 +37,7 @@ class Board {
         return newState;
     }
 
-    breed( state: Array<Array<number>> ): Array<Array<number>> {
+    breed(): Array<Array<number>> {
 
         const newState = JSON.parse( JSON.stringify(this.state) );
 
@@ -52,13 +52,13 @@ class Board {
 
                     const nb = neighbours[n];
                     
-                    if ( state[nb.x][nb.y] === 1 ) {
+                    if ( this.state[nb.x][nb.y] === 1 ) {
 
                         countOfAliveNb++;
                     }
                 }
 
-                if ( state[x][y] === 1 && (countOfAliveNb === 2 || countOfAliveNb === 3) ) {
+                if ( this.state[x][y] === 1 && (countOfAliveNb === 2 || countOfAliveNb === 3) ) {
 
                     newState[x][y] = 1;
                 }

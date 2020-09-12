@@ -11,15 +11,15 @@ it( 'has correct state after breed', () => {
 
     console.log( b.state );
 
-    const s1 = b.breed( b.state );
+    const s1 = b.breed();
 
     console.log( s1 );
 
-    const s2 = b.breed( s1 );
+    const s2 = b.breed();
 
     console.log( s2 );
 
-    const s3 = b.breed( s2 );
+    const s3 = b.breed();
 
     console.log( s3 );
 } )

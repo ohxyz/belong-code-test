@@ -17,7 +17,7 @@ function App( {board}: AppProps ) {
 
     function handleNextGenClick() {
 
-        setLayout( board.breed(layout) );
+        setLayout( board.breed() );
     }
 
     function handleResetClick() {
